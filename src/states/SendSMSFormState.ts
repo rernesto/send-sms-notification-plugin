@@ -27,7 +27,6 @@ export class Actions {
 }
 
 export function reduce(state: SendSMSFormState = initialState, action: Action) {
-  console.log(action);
   switch (action.type) {
     case ACTION_SET_TO: {
       return {

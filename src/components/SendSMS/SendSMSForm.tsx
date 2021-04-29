@@ -14,9 +14,24 @@ type Props = StateToProps & DispatchToProps & OwnProps;
 
 // It is recommended to keep components stateless and use redux for managing states
 const SendSMSForm = (props: Props) => {
+
     const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(props);
+
+        fetch('https://boalt-5995.twil.io/send-sms'
+            , {
+                method: 'POST',
+                body: `From=${props.From}&To=${props.To}&Message=${props.Message}`,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                mode: 'no-cors'
+            }
+        ).then(function (response) {
+            console.log(response);
+        }).catch(function (err) {
+                console.log("Something went wrong!", err);
+        });
     };
 
     return (
